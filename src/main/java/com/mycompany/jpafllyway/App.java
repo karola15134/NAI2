@@ -15,9 +15,6 @@ public class App {
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
                 
-                 Flyway flyway = new Flyway();
-                 flyway.setDataSource("jdbc:mysql://localhost:3306/db_person","springuser","ThePassword");
-           
-                 flyway.migrate();
+          
 	}
 }

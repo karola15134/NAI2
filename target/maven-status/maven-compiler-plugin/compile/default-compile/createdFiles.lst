@@ -1,3 +1,3 @@
-com\mycompany\jpafllyway\domain\Person.class
 com\mycompany\jpafllyway\service\PersonRepository.class
 com\mycompany\jpafllyway\App.class
+com\mycompany\jpafllyway\domain\Person.class

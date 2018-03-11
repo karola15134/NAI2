@@ -25,15 +25,20 @@ public class Person {
 	private String firstName;
 	private String lastName;
         private String hobby;
-        private Integer age;
 
-    public Integer getAge() {
-        return age;
+
+
+        
+
+    public String getHobby() {
+        return hobby;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
     }
+
+        
 
         
 	public String getFirstName() {
@@ -52,13 +57,6 @@ public class Person {
 		this.lastName = lastName;
 	}
 
-    public String getHobby() {
-        return hobby;
-    }
 
-    public void setHobby(String hobby) {
-        this.hobby = hobby;
-    }
-        
         
 }

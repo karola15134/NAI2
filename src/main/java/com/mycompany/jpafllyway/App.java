@@ -7,10 +7,13 @@ package com.mycompany.jpafllyway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.flywaydb.core.Flyway;
 
+/**
+ *
+ * @author Karo
+ */
 @SpringBootApplication
-public class App {
+public class App   {
 
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);

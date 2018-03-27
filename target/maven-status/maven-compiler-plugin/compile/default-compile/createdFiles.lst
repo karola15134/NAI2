@@ -2,5 +2,7 @@ com\mycompany\jpafllyway\service\PersonRepository.class
 com\mycompany\jpafllyway\App.class
 com\mycompany\jpafllyway\domain\Person.class
 com\mycompany\jpafllyway\conf\MvcConfig.class
+com\mycompany\jpafllyway\controler\AdminController.class
 com\mycompany\jpafllyway\interceptor\TimeInterceptor.class
+com\mycompany\jpafllyway\interceptor\RedirectInterceptor.class
 com\mycompany\jpafllyway\conf\WebSecurityConfig.class

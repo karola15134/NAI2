@@ -5,6 +5,7 @@
  */
 package com.mycompany.jpafllyway.conf;
 
+import com.mycompany.jpafllyway.interceptor.RedirectInterceptor;
 import com.mycompany.jpafllyway.interceptor.TimeInterceptor;
 import java.util.logging.Logger;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +31,9 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new TimeInterceptor())
-                .addPathPatterns("/");
+                .addPathPatterns("/admin/**");
+        registry.addInterceptor(new RedirectInterceptor())
+                .addPathPatterns("/admin/homeAdmin");
         
     }
 

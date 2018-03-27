@@ -8,9 +8,6 @@ package com.mycompany.jpafllyway.interceptor;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class TimeInterceptor extends HandlerInterceptorAdapter {
@@ -29,14 +26,6 @@ public class TimeInterceptor extends HandlerInterceptorAdapter {
         return true;
     }
 
-    @Override
-    public void postHandle(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            Object handler,
-            ModelAndView modelAndView) throws Exception {
-
-    }
 
     @Override
     public void afterCompletion(
@@ -50,7 +39,7 @@ public class TimeInterceptor extends HandlerInterceptorAdapter {
 
         long executeTime = endTime - startTime;
 
-        log.info("[" + handler + "] executeTime : " + executeTime + "ms");
+        log.info("executeTime : " + executeTime + "ms");
 
     }
 }

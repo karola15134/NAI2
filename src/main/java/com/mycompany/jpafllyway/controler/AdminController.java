@@ -7,6 +7,7 @@ package com.mycompany.jpafllyway.controler;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(path = "/admin")
@@ -19,6 +20,12 @@ public class AdminController {
         
         return "adminHome";
             
+    }
+    
+    @RequestMapping(value= "/language" , method = RequestMethod.GET)
+    public String language(){
+        
+        return "adminLang";
     }
     
 }

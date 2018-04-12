@@ -8,6 +8,7 @@ package com.mycompany.mybatis.mapper;
 
 
 import com.mycompany.mybatis.domain.Book;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -16,6 +17,9 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface BookMapper {
     
-    @Select("SELECT * FROM BOOK WHERE title = #{title}")
+    @Select("SELECT * FROM BOOKS WHERE title = #{title}")
     Book findByName(@Param("title") String title);
+    
+    @Select("SELECT * FROM BOOKS ")
+    List<Book> findAllBooks();
 }

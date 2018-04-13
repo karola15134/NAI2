@@ -23,4 +23,20 @@ public class BookService {
         listOfBooks = (List<Book>) bookMapper.findAllBooks();
         return listOfBooks;
     }
+
+    public void addBook(Book book) {
+      bookMapper.addBook(book);
+    }
+
+    public void deleteBook(Book book) {
+        bookMapper.deleteBook(book.getId());
+    }
+
+    public void updateBook(Book book) {
+        
+        bookMapper.updateBook(book);
+        
+    }
+
+    
 }

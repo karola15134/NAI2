@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Update and delete book</title>
+    </head>
+    <body>
+        <p> Delete books </p>
+        
+         <form action="#" th:action="@{/deleteBook}"  th:object="${book}" method="post"  >
+             
+        <select  th:field="*{id}" >
+	<option th:each ="book : ${listOfBooks}" th:value="${book.id}" th:text="${book.title}" ></option>
+        </select>
+             <p><input type="submit" value="Delete"  /></p>
+         </form>
+    </body>
+</html>

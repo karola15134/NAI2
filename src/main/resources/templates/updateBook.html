@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Edit book</title>
+    </head>
+    <body>
+
+        <form action="#" th:action="@{/editBook}"  th:object="${book}" method="post"  >
+
+            <select  th:field="*{id}" >
+                <option th:each ="book : ${listOfBooks}" th:value="${book.id}" th:text="${book.title}" ></option>
+            </select>
+            
+            <p> New title </p> <input type="text"  th:field="*{title}" name="title"/> 
+
+      
+            <p><input type="submit" value="Edit"  /></p>
+        </form>
+
+
+
+    </body>
+</html>

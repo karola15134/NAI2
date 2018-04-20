@@ -10,11 +10,14 @@
                 <th>ID</th>
                 <th>TITLE</th>
                 <th>NUMBER OF PAGES</th>
+                 <th>AUTHOR</th>
             </tr>
             <tr th:each ="book : ${listOfBooks}">  
                 <td th:text="${book.id}"> ID</td>
                 <td th:text="${book.title}"> Title </td>
-                <td th:text="${book.numbOfPages}"> Number of pages</td>           
+                <td th:text="${book.numbOfPages}"> Number of pages</td>       
+                <td th:text="${book.author.fName} + '&nbsp;' + ${book.author.lName}"> Author </td>
+                        
             </tr>
         </table>
         

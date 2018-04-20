@@ -5,30 +5,33 @@
  */
 package com.mycompany.mybatis.mapper;
 
-
-
+import com.mycompany.mybatis.domain.Author;
 import com.mycompany.mybatis.domain.Book;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-
 @Mapper
 public interface BookMapper {
-    
+
+    @Select("SELECT * FROM BOOKS")
+    @Results(value = {
+        @Result(property = "author", column = "author",
+                one = @One(select = "findAuthorByBook"))})
+    List<Book> findAllBooks();
+
+    @Select("SELECT * FROM authors where id = #{id}")
+    public Author findAuthorByBook(long id);
     
  
-
-    
-    @Select("SELECT * FROM BOOKS WHERE title = #{title}")
-    Book findByName(@Param("title") String title);
-    
-    @Select("SELECT * FROM BOOKS ")
-    List<Book> findAllBooks();
 
     /**
      *
@@ -36,11 +39,11 @@ public interface BookMapper {
      */
     @Insert("INSERT INTO BOOKS(title,numbOfPages) VALUES (#{title}, #{numbOfPages})")
     void addBook(Book book);
-        
-    
+
     @Delete("DELETE FROM books WHERE id =#{id}")
     void deleteBook(long id);
-    
+
     @Update("UPDATE books SET title=#{title} WHERE id =#{id}")
-	void updateBook(Book book);
+    void updateBook(Book book);
+
 }

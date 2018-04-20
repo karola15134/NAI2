@@ -12,15 +12,27 @@ import java.io.Serializable;
  * @author Karo
  */
 public class Book implements Serializable {
-    
-    
-	private static final long serialVersionUID = 1L;
 
-	private Long id;
+    private static final long serialVersionUID = 1L;
 
-        private String title;
+    private Long id;
+
+    private String title;
+
+    private Integer numbOfPages;
+
+    private Author author = new Author();
+
+    public Book() {
         
-        private Integer numbOfPages;
+    }
+
+    public Book(Long id, String title, Integer numbOfPages, Author author) {
+        this.id = id;
+        this.title = title;
+        this.numbOfPages = numbOfPages;
+        this.author = author;
+    }
 
     public Long getId() {
         return id;
@@ -45,10 +57,18 @@ public class Book implements Serializable {
     public void setNumbOfPages(Integer numbOfPages) {
         this.numbOfPages = numbOfPages;
     }
-        
-      @Override
-	public String toString() {
-		return getId() + "," + getTitle() + "," + getNumbOfPages();
-}  
-    
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return getId() + "," + getTitle() + "," + getNumbOfPages();
+    }
+
 }

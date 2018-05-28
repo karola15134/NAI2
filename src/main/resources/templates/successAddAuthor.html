@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Add Author</title>
+    </head>
+    <body>
+      
+        <p> Add Author </p>
+        
+        
+          <p th:text="${author.fName}"> First name </p>
+          <p th:text="${author.lName}"> Last name</p>  
+
+       
+           <p>  <a th:href="@{/private/addAuthor}">Add new author</a> </p>
+           <p>  <a th:href="@{/private/allAuthors}">Show all authors</a> </p>
+    </body>
+</html>

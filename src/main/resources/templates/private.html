@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Private</title>
+    </head>
+    <body>
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+        
+        <h2> Books </h2>
+
+        <p>Click <a th:href="@{/private/allBooks}">here</a> to show all books.</p>
+        <p>Click <a th:href="@{/private/addBook}">here</a> to add a book</p>
+        <p>Click <a th:href="@{/private/deleteBook}">here</a> to delete a book</p>
+        <p>Click <a th:href="@{/private/editBook}">here</a> to edite a book</p>
+
+        <h1> Authors </h1>
+        <p>Click <a th:href="@{/private/allAuthors}">here</a> to show all authors.</p>
+        <p>Click <a th:href="@{/private/addAuthor}">here</a> to add a author</p>
+
+    </body>
+</html>

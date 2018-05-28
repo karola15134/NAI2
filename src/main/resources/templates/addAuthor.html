@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Add Author</title>
+    </head>
+    <body>
+        <p> Add new author </p>
+
+
+        <form action="#" th:action="@{/private/addAuthor}"  th:object="${author}" method="post"  >
+
+            <p> First name </p> <input type="text"  th:field="*{fName}" name="fName"/> 
+         
+            <p> Last name </p> <input type="text" th:field="*{lName}" name="lName"/>  
+                    
+            <p><input type="submit" value="Save"  /></p>
+            
+        </form>
+
+        
+    </body>
+</html>

@@ -1,9 +1,12 @@
 com\mycompany\mybatis\domain\Book.class
 com\mycompany\mybatis\App.class
+com\mycompany\mybatis\dto\AuthorDto.class
+com\mycompany\mybatis\service\BookService.class
+com\mycompany\mybatis\domain\Author.class
+com\mycompany\mybatis\mapper\BookMapper.class
 com\mycompany\mybatis\mapper\AuthorMapper.class
 com\mycompany\mybatis\controler\BookController.class
 com\mycompany\mybatis\conf\MvcConfig.class
-com\mycompany\mybatis\service\BookService.class
+com\mycompany\mybatis\conf\SecurityConf.class
+com\mycompany\mybatis\controler\AuthorController.class
 com\mycompany\mybatis\service\AuthorService.class
-com\mycompany\mybatis\domain\Author.class
-com\mycompany\mybatis\mapper\BookMapper.class

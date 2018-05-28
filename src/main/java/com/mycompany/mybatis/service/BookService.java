@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookService {
     
-     @Autowired
+    @Autowired
     private BookMapper bookMapper;
      
      public List<Book> getAllBooks(){

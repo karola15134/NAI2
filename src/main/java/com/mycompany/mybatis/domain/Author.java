@@ -20,12 +20,13 @@ public class Author {
     
     private String lName;
     
-    private List<Book> listOfBooks = new ArrayList<Book>();
+    private List<Book> listOfBooks;
 
     public Author(Long id, String fName, String lName) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
+        this.listOfBooks = new ArrayList<>();
     }
 
     public Author() {

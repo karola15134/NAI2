@@ -5,9 +5,10 @@
  */
 package com.mycompany.mybatis;
 
-import com.mycompany.mybatis.mapper.BookMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class App {
@@ -20,5 +21,8 @@ public class App {
           
 	}
     
- 
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+}
 }

@@ -2,15 +2,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Home</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+            $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            if (selectedOption !== ''){
+            window.location.replace('?lang=' + selectedOption);
+            }
+            });
+            });
+        </script>
     </head>
     <body>
-        <h1>Welcome!</h1>
+        <h1 th:text="#{text.welcome}"> </h1> 
+        <h2 th:text="#{text}"></h2>
 
-        <h2> Private: Books and authors </h2>
-        <p>Click <a th:href="@{/private}">here</a> </p>
+        <select id="locales">
+            <option value=""></option>
+            <option value="pl" th:text="#{lang.pl}"></option>
+            <option value="en" th:text="#{lang.en}"></option>
+        </select>
         
-        <h2> Public :  </h2>
-        <p>Click <a th:href="@{/public}">here</a> </p>
-     
+        <h2 th:text="#{text.private}"> </h2> 
+        <div th:text="#{text.click}"></div> 
+        <a th:href="@{/private}"> ... </a> 
+
+        <h2 th:text="#{text.public}"> </h2>
+        <div th:text="#{text.click}"></div> 
+         <a th:href="@{/public}"> ... </a>
+
     </body>
 </html>

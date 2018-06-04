@@ -24,7 +24,7 @@ public class AuthorService {
     
     public void addAuthor(Author author){
         
-        authorMapper.addAuthor(author);
+        authorMapper.save(author);
     }
     
 }

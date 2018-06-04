@@ -43,7 +43,6 @@ public interface AuthorMapper {
     @Delete("DELETE FROM authors where where id=#{id}")
     public void deleteAuthorById(long id);
     
-    @Insert("INSERT  INTO authors(fName,lName) values(#{fName} , #{lName})")
-    public void addAuthor(Author author);
+  
 
 }

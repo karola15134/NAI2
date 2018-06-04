@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mybatis.controler;
+package com.mycompany.mybatis.controller;
 
 import com.mycompany.mybatis.domain.Book;
 import com.mycompany.mybatis.service.BookService;

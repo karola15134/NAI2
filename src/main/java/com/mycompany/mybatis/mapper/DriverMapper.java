@@ -20,7 +20,7 @@ public interface DriverMapper {
     @Select("SELECT * from drivers")
     public List<Driver> findAllDrivers();
 
-    @Insert("INSERT INTO drivers(fName,lName,drivingLicDate,categories) VALUES (#{fName}, #{lName} , #{drivingLicDate} , #{categories)")
+    @Insert("INSERT INTO drivers(fName,lName,drivingLicDate,categories) VALUES (#{fName}, #{lName} , #{drivingLicDate} , #{categories})")
     public void save(Driver driver);
 
     @Delete("DELETE FROM drivers WHERE id =#{id}")

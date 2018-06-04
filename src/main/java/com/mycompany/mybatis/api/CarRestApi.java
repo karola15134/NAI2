@@ -3,37 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mybatis.controller;
+package com.mycompany.mybatis.api;
 
-import com.mycompany.mybatis.domain.Book;
 import com.mycompany.mybatis.domain.Car;
 import com.mycompany.mybatis.service.CarService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping(path="public")
-@Controller
-public class CarController {
+@RestController
+@RequestMapping(path = "api/car")
+public class CarRestApi {
+    
      
     @Autowired
     CarService carService;
     
-     @RequestMapping(value="cars",method = RequestMethod.GET)
-     public String getAllCars(Model model){
-         
-        List<Car> listOfCars = carService.getAllCars();
-        model.addAttribute("listOfCars",listOfCars);
-         return "allCars";
-     }
-     
      @RequestMapping(value="all" , method=RequestMethod.GET ,  produces="application/json")
      @ResponseBody
      public List<Car> getAllCarsRest(){
@@ -63,5 +53,4 @@ public class CarController {
      {
          carService.update(car);
      }
-     
 }

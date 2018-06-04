@@ -6,7 +6,10 @@
 package com.mycompany.mybatis.controller;
 
 import com.mycompany.mybatis.domain.Book;
+import com.mycompany.mybatis.email.EmailSenderImpl;
+import com.mycompany.mybatis.mapper.DriverMapper;
 import com.mycompany.mybatis.service.BookService;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,13 +26,17 @@ public class BookController {
     @Autowired
     private BookService bookService;
     
+ 
+
+
+    
     @RequestMapping(value="allBooks",method = RequestMethod.GET)
     public String getAllBooks(Model model){
         
         
         List<Book> listOfBooks = bookService.getAllBooks();
         model.addAttribute("listOfBooks", listOfBooks);
-        
+       
         return "allBooks";
     }
     
@@ -91,6 +98,6 @@ public class BookController {
            return "updateBook";
        }
      
-
+  
 
 }

@@ -8,10 +8,7 @@ package com.mycompany.mybatis.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Karo
- */
+
 public class Author {
     
     private Long id;

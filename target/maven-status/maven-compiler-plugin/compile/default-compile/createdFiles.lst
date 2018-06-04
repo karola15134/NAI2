@@ -6,6 +6,7 @@ com\mycompany\mybatis\domain\Author.class
 com\mycompany\mybatis\mapper\BookMapper.class
 com\mycompany\mybatis\mapper\AuthorMapper.class
 com\mycompany\mybatis\interceptor\RedirectInterceptor.class
+com\mycompany\mybatis\domain\Car.class
 com\mycompany\mybatis\controler\BookController.class
 com\mycompany\mybatis\interceptor\TimeInterceptor.class
 com\mycompany\mybatis\conf\MvcConfig.class

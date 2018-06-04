@@ -1,0 +1,246 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Cars </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <body>
+        <script>
+            var app = angular.module('public', []);
+
+            app.controller('myCtrl', function($scope, $http,$location) {
+            $scope.cars = [];
+            $scope.restMessage;
+            $scope.currentCar = [];
+            $scope.indexUpdate;
+
+
+
+            function getAll(){
+            var url = "http://localhost:8080/public/all";
+
+            $http.get(url).then(function(response){
+            $scope.cars = response.data;
+            }, function error(response) {
+            $scope.restMessage = "Error Status: " +  response.statusText;
+            });     
+            }
+
+            getAll();
+
+            $scope.delete = function(index){
+
+            $http.delete('http://localhost:8080/public/delete/' + $scope.cars[index].id).then(function (response) {
+
+            $scope.restMessage = "Deleted a car : " + $scope.cars[index].brand + " ! ";
+
+            $scope.cars.splice(index, 1);
+
+            }, function error(response) {
+
+            $scope.restMessage = "Error!";
+            });
+            }
+
+
+            $scope.add = function(){
+
+            var data = {
+            brand: $scope.brand,
+            productionDate: $scope.productionDate,
+            numberOfDoors: $scope.numberOfDoors
+            }
+
+            var config = {
+            headers : {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+            }
+            }
+
+            $http.post('http://localhost:8080/public/add',data,config).then(function (response) {
+
+            $scope.restMessage = " Added a new car " ;
+            $scope.cars.push(data);
+
+            $scope.brand = "";
+            $scope.productionDate = "";
+            $scope.numberOfDoors = "";
+
+            }, function error(response){
+            $scope.restMessage = "Error!" + response.statusText;
+
+            });
+
+            }
+
+            $scope.copy= function(index){
+
+            $scope.indexUpdate = index;
+            $scope.currentCar = $scope.cars[index];
+            $scope.brand = $scope.currentCar.brand;
+            $scope.productionDate = $scope.currentCar.productionDate;
+            $scope.numberOfDoors = $scope.currentCar.numberOfDoors;
+
+
+
+            }
+
+
+            $scope.update = function(){
+
+            var config = {
+            headers : {
+            'Content-Type': 'application/json',
+            'Accept': 'text/plain'
+            }
+            }
+
+            var data2 = {
+            id: $scope.currentCar.id, 
+            brand: $scope.brand,
+            productionDate: $scope.productionDate,
+            numberOfDoors: $scope.numberOfDoors
+            }
+
+
+            $http.put('http://localhost:8080/public/update/', data2 , config).then(function (response) {
+            $scope.restMessage = "Edited a car ";
+
+            $scope.cars[$scope.indexUpdate].brand = data2.brand;
+            $scope.cars[$scope.indexUpdate].productionDate = data2.productionDate;
+            $scope.cars[$scope.indexUpdate].numberOfDoors = data2.numberOfDoors;
+
+            $scope.brand = "";
+            $scope.productionDate = "";
+            $scope.numberOfDoors = "";
+            }, function error(response) {
+
+            $scope.restMessage = "Error" + response.statusText;
+            });
+
+            }
+
+
+
+            });
+
+        </script>
+
+        <style type="text/css">
+            .container.custom-container {
+                padding: 0 50px;
+            }
+
+
+        </style>
+
+
+    </head>
+<body ng-app="public" ng-controller="myCtrl" >
+    <h2> Cars </h2>
+
+
+    <div class="container">
+
+        <div class="reglist">
+            <table class="table table-striped">
+
+                <thead>
+
+                    <tr>
+                        <th>#</th>
+
+                        <th>Brand</th>
+
+                        <th>Production date</th>
+
+                        <th>Number of doors</th>
+
+                        <th></th>
+
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr ng-repeat="car in cars" ng-model="car"  >
+
+                        <td>{{ $index + 1 }}</td>
+
+                        <td>{{ car.brand }}</td>
+
+                        <td>{{ car.productionDate }}</td>
+
+                        <td>{{ car.numberOfDoors }}</td>
+
+                        <td>
+
+                            <button type="button" class="btn btn-info" ng-click="copy($index)" > Edit</button>
+
+                        </td>
+
+                        <td>
+
+                            <button  href="# "type="button"  class="btn btn-danger" ng-click="delete($index)" >Delete</button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="row col-md-6 ">
+
+                <div class="form">
+                    <form ng-model = "editedCar" >
+
+                        <div class="form-group">
+                            <label for="brand">Brand:</label>
+                            <input  type="text" class="form-control" name="brand" placeholder="Enter Brand" ng-model="brand"/>   
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productionDate">Production date:</label>
+                            <input type="text"  class="form-control" name="productionDate" placeholder="Enter Production Date" ng-model="productionDate"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numberOfDoors">Number of doors:</label>
+                            <input type="text" class="form-control" name="numberOfDoors" placeholder="Enter Number of Doors" ng-model="numberOfDoors"/>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-success"  href="#" ng-click="add()">Add Car</button>
+                        <button type="submit" class="btn btn-info" ng-click="update()" > Submit changes</button>
+                    </form>
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <br>
+</body>
+</html>

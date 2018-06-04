@@ -8,7 +8,7 @@
         <p> Add new book </p>
 
 
-        <form action="#" th:action="@{/addBook}"  th:object="${book}" method="post"  >
+        <form  action="#" th:action="@{/private/addBook}"  th:object="${book}" method="post"  >
 
             <p> Title </p> <input type="text"  th:field="*{title}" name="title"/> 
          

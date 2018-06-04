@@ -6,6 +6,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
+        <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <body>
         <script>
@@ -17,7 +19,9 @@
             $scope.currentDriver = [];
             $scope.indexUpdate;
 
-
+            $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+            });
 
             function getAll(){
             var url = "http://localhost:8080/api/driver/all";
@@ -51,7 +55,7 @@
             var data = {
             fName: $scope.fName,
             lName: $scope.lName,
-            drivingLicDate: $scope.drivingLicDate,
+            drivingLicDate: $('#datepicker').val(),
             categories: $scope.categories
             }
 
@@ -86,7 +90,7 @@
             $scope.currentDriver = $scope.drivers[index];
             $scope.fName = $scope.currentDriver.fName;
             $scope.lName = $scope.currentDriver.lName;
-            $scope.drivingLicDate = $scope.currentDriver.drivingLicDate;
+            $scope.drivingLicDate =  $('#datepicker').val();
             $scope.categories = $scope.currentDriver.categories;
 
 
@@ -107,7 +111,7 @@
             id: $scope.currentDriver.id,
             fName: $scope.fName,
             lName: $scope.lName,
-            drivingLicDate: $scope.drivingLicDate,
+            drivingLicDate:  $('#datepicker').val(),
             categories: $scope.categories
             }
 
@@ -117,14 +121,15 @@
 
             $scope.drivers[$scope.indexUpdate].fName = data2.fName;
             $scope.drivers[$scope.indexUpdate].lName = data2.lName;
-            $scope.drivers[$scope.indexUpdate].drivingLicDate = data2.drivingLicDate;
+            $scope.drivers[$scope.indexUpdate].drivingLicDate =  $('#datepicker').val();
+            $scope.drivers[$scope.indexUpdate].categories = data2.categories;
 
             $scope.fName = "";
             $scope.lName ="";
-            $scope.drivingLicDate="";
+            $scope.drivingLicDate.val="";
             $scope.categories="";
-            
-            
+
+
             }, function error(response) {
 
             $scope.restMessage = "Error" + response.statusText;
@@ -149,7 +154,7 @@
 
     </head>
 <body ng-app="public" ng-controller="myCtrl" >
-    
+
 
 
     <div class="container">
@@ -166,8 +171,8 @@
 
                         <th>PLast name</th>
 
-                        <th>Driving licence</th>
-                        
+                        <th>Driving licence date</th>
+
                         <th>Categories</th>
 
                         <th></th>
@@ -189,7 +194,7 @@
                         <td>{{ driver.lName }}</td>
 
                         <td>{{ driver.drivingLicDate }}</td>
-                        
+
                         <td>{{ driver.categories }}</td>
 
                         <td>
@@ -227,10 +232,11 @@
 
                         <div class="form-group">
                             <label for="drivingLicDate">Driving licence date: </label>
-                            <input type="text" class="form-control" name="numberOfDoors" placeholder="Enter Driving Licence Date " ng-model="drivingLicDate"/>
+                            <input type="text" id="datepicker" class="form-control" name ="drivingLicDate"  placeholder="Choose Driving Licence Date" width="276" ng-model="drivingLicDate" />
+                         
                         </div>
-                        
-                         <div class="form-group">
+
+                        <div class="form-group">
                             <label for="categories">Categories: </label>
                             <input type="text" class="form-control" name="numberOfDoors" placeholder="Enter Categories" ng-model="categories"/>
                         </div>

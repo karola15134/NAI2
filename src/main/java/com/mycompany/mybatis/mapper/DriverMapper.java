@@ -28,5 +28,8 @@ public interface DriverMapper {
 
     @Update("UPDATE drivers SET fName=#{fName} , lName=#{lName} , drivingLicDate=#{drivingLicDate} , categories=#{categories} WHERE id =#{id}")
     public void updateDriver(Driver driver);
+
+    @Select(" SELECT COUNT(*)  FROM drivers")
+    public Integer count();
     
 }

@@ -6,6 +6,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
         <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -39,9 +40,13 @@
 
             $http.delete('http://localhost:8080/api/driver/delete/' + $scope.drivers[index].id).then(function (response) {
 
-            $scope.restMessage = "Deleted a cdriver : " + $scope.driver[index].fName + $scope.driver[index].lName  + " ! ";
+            $scope.restMessage = "Deleted a driver : " + $scope.driver[index].fName + $scope.driver[index].lName  + " ! ";
 
+           
+            
             $scope.drivers.splice(index, 1);
+            
+             $('#myModal').modal('show');
 
             }, function error(response) {
 
@@ -71,11 +76,14 @@
             $scope.restMessage = " Added a new driver " ;
             $scope.drivers.push(data);
 
+            $('#myModal').modal('show'); 
 
             $scope.fName = "";
             $scope.lName ="";
             $scope.drivingLicDate="";
             $scope.categories="";
+            
+            
 
             }, function error(response){
             $scope.restMessage = "Error!" + response.statusText;
@@ -117,8 +125,11 @@
 
 
             $http.put('http://localhost:8080/api/driver/update/', data2 , config).then(function (response) {
+           
             $scope.restMessage = "Edited a driver ";
 
+            $('#myModal').modal('show');
+            
             $scope.drivers[$scope.indexUpdate].fName = data2.fName;
             $scope.drivers[$scope.indexUpdate].lName = data2.lName;
             $scope.drivers[$scope.indexUpdate].drivingLicDate =  $('#datepicker').val();
@@ -148,6 +159,9 @@
                 padding: 0 50px;
             }
 
+            .my-form{
+                width: 30%; /* value of your choice */
+            }
 
         </style>
 
@@ -215,7 +229,7 @@
 
             </table>
 
-            <div class="row col-md-6 ">
+            <div class="my-form mx-auto">
 
                 <div class="form">
                     <form >
@@ -232,8 +246,8 @@
 
                         <div class="form-group">
                             <label for="drivingLicDate">Driving licence date: </label>
-                            <input type="text" id="datepicker" class="form-control" name ="drivingLicDate"  placeholder="Choose Driving Licence Date" width="276" ng-model="drivingLicDate" />
-                         
+                            <input type="text" id="datepicker" class="form-control" name ="drivingLicDate"  placeholder="Choose Driving Licence Date" ng-model="drivingLicDate" />
+
                         </div>
 
                         <div class="form-group">
@@ -258,7 +272,30 @@
 
 
         </div>
-
+        
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Message</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <p> {{restMessage}} </p>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
     </div>
 

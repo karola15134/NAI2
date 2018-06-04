@@ -5,7 +5,6 @@ com\mycompany\mybatis\api\CarRestApi.class
 com\mycompany\mybatis\domain\Driver.class
 com\mycompany\mybatis\dto\AuthorDto.class
 com\mycompany\mybatis\service\BookService.class
-.netbeans_automatic_build
 com\mycompany\mybatis\domain\Author.class
 com\mycompany\mybatis\mapper\BookMapper.class
 com\mycompany\mybatis\service\DriverService.class

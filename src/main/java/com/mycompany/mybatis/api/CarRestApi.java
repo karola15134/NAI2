@@ -42,9 +42,10 @@ public class CarRestApi {
      
      @RequestMapping(value="add")
      @ResponseBody
-     public void addCar(@RequestBody Car car)
+     public Car addCar(@RequestBody Car car)
      {
          carService.addCar(car);
+         return car;
      }
      
      @RequestMapping(value="update" , method=RequestMethod.PUT)

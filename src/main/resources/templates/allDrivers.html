@@ -40,13 +40,14 @@
 
             $http.delete('http://localhost:8080/api/driver/delete/' + $scope.drivers[index].id).then(function (response) {
 
-            $scope.restMessage = "Deleted a driver : " + $scope.driver[index].fName + $scope.driver[index].lName  + " ! ";
+            $scope.restMessage = "Deleted a driver : " + $scope.drivers[index].fName + $scope.drivers[index].lName  + " ! ";
 
            
             
-            $scope.drivers.splice(index, 1);
-            
+             $scope.drivers.splice(index,1);
+             window.location.replace('http://localhost:8080/public/drivers');
              $('#myModal').modal('show');
+            
 
             }, function error(response) {
 
@@ -75,9 +76,11 @@
 
             $scope.restMessage = " Added a new driver " ;
             $scope.drivers.push(data);
-
+            
+window.location.replace('http://localhost:8080/public/drivers');
             $('#myModal').modal('show'); 
 
+            
             $scope.fName = "";
             $scope.lName ="";
             $scope.drivingLicDate="";

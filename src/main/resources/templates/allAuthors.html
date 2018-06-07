@@ -2,29 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>All authors</title>
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     </head>
     <body>
 
-        <table border="1" class="authorTable">
+        <table class="authorTable">
+            <thead>
             <tr>              
                 <th>First name</th>
                 <th>Last name</th>
-            </tr>
-           
+            </tr>       
+                </thead>
+            
+            <tbody>
+                
+            </tbody>
         </table>
-        
-         <script type="text/javascript">
+
+        <script type="text/javascript">
+              $(document).ready(function(){
             $.get("http://localhost:8080/private/getAuthors", function (data) {
-                $.each(data, function (i, author) {
-                    $(".authorTable").append(
-                            "<tr><td>" + author.fName + "</td>" +
-                            "<td>" + author.lName + "</td></tr>");
-                });
+            $.each(data, function (i, user) {
+            $("table tbody").append(
+            "<tr><td>" + user.fName + "</td>" +
+            "<td>" + user.lName + "</td></tr>");
+            });
+            });
             });
         </script>
-        
-         <p>  <a th:href="@{/private/addAuthor}">Add new author</a> </p>
-         <p>Click <a th:href="@{/}">here</a> to return a home page.</p>
+
+
+        <p>  <a th:href="@{/private/addAuthor}">Add new author</a> </p>
+        <p>Click <a th:href="@{/}">here</a> to return a home page.</p>
     </body>
 </html>

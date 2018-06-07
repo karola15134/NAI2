@@ -35,41 +35,39 @@ public class AuthorController {
 
         List<Author> listOfAuthors = authorService.getAllAuthors();
         List<AuthorDto> listOfAuthorsDto = listOfAuthors.stream().map(author -> convertToDto(author))
-.collect(Collectors.toList());
+                .collect(Collectors.toList());
         model.addAttribute("listOfAuthors", listOfAuthorsDto);
 
         return "allAuthors";
     }
 
-    
-    
-    @RequestMapping(value="addAuthor",method = RequestMethod.GET)
-    public String addAuthorGet(Model model){
-        
+    @RequestMapping(value = "addAuthor", method = RequestMethod.GET)
+    public String addAuthorGet(Model model) {
+
         AuthorDto authorDto = convertToDto(new Author());
         model.addAttribute("author", authorDto);
         return "addAuthor";
     }
-    
-    
-    
-    @RequestMapping(value="addAuthor",method = RequestMethod.POST)
-    public String addAuthor(@ModelAttribute("author")Author author){
-        
+
+    @RequestMapping(value = "addAuthor", method = RequestMethod.POST)
+    public String addAuthor(@ModelAttribute("author") Author author) {
+
         authorService.addAuthor(author);
         return "successAddAuthor";
-        
+
     }
-    
-    @RequestMapping(value="getAuthors",method = RequestMethod.GET)
+
+    @RequestMapping(value = "getAuthors", method = RequestMethod.GET)
     @ResponseBody
-    public List<Author> getAuthors(){
+    public List<AuthorDto> getAuthors() {
+
+        List<Author> listOfAuthors = authorService.getAllAuthors();
+        List<AuthorDto> listOfAuthorsDto = listOfAuthors.stream().map(author -> convertToDto(author))
+                .collect(Collectors.toList());
         
-        return authorService.getAllAuthors();
+        return listOfAuthorsDto;
     }
-    
-    
-    
+
     private AuthorDto convertToDto(Author author) {
 
         AuthorDto authorDto = modelMapper.map(author, AuthorDto.class);

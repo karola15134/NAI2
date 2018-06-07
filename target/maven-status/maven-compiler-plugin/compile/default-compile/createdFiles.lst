@@ -1,7 +1,6 @@
 com\mycompany\mybatis\domain\Book.class
 com\mycompany\mybatis\App.class
 com\mycompany\mybatis\controller\BookController.class
-com\mycompany\mybatis\api\CarRestApi.class
 com\mycompany\mybatis\domain\Driver.class
 com\mycompany\mybatis\dto\AuthorDto.class
 com\mycompany\mybatis\service\BookService.class
